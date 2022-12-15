@@ -8,8 +8,16 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-// import authRoutes from "./routes/auth.js";
+
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/posts.js";
+import { verifyToken } from "./middleware/auth.js";
+import user from "./models/user.js";
+import post from "./models/post.js";
+import { users, posts } from "./data/index.js";
 
 //configuring the modules
 const __filename = fileURLToPath(import.meta.url);
@@ -41,9 +49,15 @@ const upload = multer({ storage });
 
 //route with files
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
+//routes
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/posts", postRoutes);
 
 //setting up mongoose
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 
 const PORT = process.env.PORT || 3001;
 mongoose
@@ -53,5 +67,9 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Listening at PORT : ${PORT}`));
+
+    //adding dummy data
+    // user.insertMany(users);
+    // post.insertMany(posts);
   })
   .catch((error) => console.log(`App couldn't connect due to : ${error}`));

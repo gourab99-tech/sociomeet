@@ -38,3 +38,22 @@ export const register = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const usr = await user.findOne({ email: email });
+    if (!usr) return res.status(400).json({ message: "User does not exist." });
+
+    //matchinng the password
+    const isMatched = await bcrypt.compare(password, usr.password);
+    if (!isMatched)
+      return res.status(400).json({ message: "Password does not match." });
+
+    const token = jwt.sign({ id: usr._id }, process.env.JWT_SECRET_TOKEN);
+    delete usr.password;
+    res.status(200).json({ token, usr });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
