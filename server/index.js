@@ -53,7 +53,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 //routes
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 //setting up mongoose
