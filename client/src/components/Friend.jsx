@@ -18,9 +18,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
-
+  // debugger;
   const isFriend = friends.find((friend) => friend._id === friendId);
-
   const patchFriend = async () => {
     const res = await fetch(`http://localhost:5000/users/${_id}/${friendId}`, {
       method: "PATCH",

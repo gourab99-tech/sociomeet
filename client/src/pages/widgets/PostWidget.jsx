@@ -26,7 +26,7 @@ const PostWidget = ({
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  const loggedInUser = useSelector((state) => state._userId);
+  const loggedInUser = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUser]);
   const likeCount = Object.keys(likes).length;
 

@@ -9,6 +9,6 @@ router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 
 //Update
-router.patch("/:userId/liked", verifyToken, likePosts);
+router.patch("/:userId/like", verifyToken, likePosts);
 
 export default router;
