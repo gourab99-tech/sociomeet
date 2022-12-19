@@ -86,11 +86,10 @@ const Form = () => {
     });
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
-    debugger;
     if (loggedIn) {
       dispatch(
         setLogin({
-          usr: loggedIn.usr,
+          user: loggedIn.usr,
           token: loggedIn.token,
         })
       );
