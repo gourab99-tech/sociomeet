@@ -18,13 +18,13 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
-  // debugger;
+
   const isFriend = friends.find((friend) => friend._id === friendId);
   const patchFriend = async () => {
     const res = await fetch(`http://localhost:5000/users/${_id}/${friendId}`, {
       method: "PATCH",
       headers: {
-        Authorization: `bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -39,7 +39,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         <UserImage image={userPicturePath} size="55px" />
         <Box
           onClick={() => {
-            navigate(`profile/${friendId}`);
+            navigate(`/profile/${friendId}`);
             navigate(0);
           }}
         >

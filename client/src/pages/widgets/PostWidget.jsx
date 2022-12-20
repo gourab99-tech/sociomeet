@@ -35,17 +35,17 @@ const PostWidget = ({
   const main = palette.neutral.main;
 
   const patchLike = async () => {
-    const res = await fetch(`http://localhost:5000/users/${postId}/like`, {
+    const response = await fetch(`http://localhost:5000/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
-        Authorization: `bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ userId: loggedInUser }),
     });
-
-    const resData = await res.json();
-    dispatch(setPost({ post: resData }));
+    const updatedPost = await response.json();
+    console.log(updatedPost);
+    dispatch(setPost({ post: updatedPost }));
   };
 
   return (

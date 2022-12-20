@@ -17,8 +17,8 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
+  firstname: yup.string().required("required"),
+  lastname: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
   location: yup.string().required("required"),
@@ -32,8 +32,8 @@ const loginSchema = yup.object().shape({
 });
 
 const initialValuesRegister = {
-  firstName: "",
-  lastName: "",
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
   location: "",
@@ -74,6 +74,7 @@ const Form = () => {
     onSubmitProps.resetForm();
 
     if (savedUser) {
+      alert("Registered Succesfully");
       setPageType("login");
     }
   };
@@ -93,6 +94,7 @@ const Form = () => {
           token: loggedIn.token,
         })
       );
+      alert("Logged In Succesfully");
       navigate("/home");
     }
   };
@@ -134,11 +136,11 @@ const Form = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.firstName}
-                  name="firstName"
+                  name="firstname"
                   error={
-                    Boolean(touched.firstName) && Boolean(errors.firstName)
+                    Boolean(touched.firstname) && Boolean(errors.firstname)
                   }
-                  helperText={touched.firstName && errors.firstName}
+                  helperText={touched.firstname && errors.firstname}
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
@@ -146,9 +148,9 @@ const Form = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.lastName}
-                  name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
+                  name="lastname"
+                  error={Boolean(touched.lastname) && Boolean(errors.lastname)}
+                  helperText={touched.lastname && errors.lastname}
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
