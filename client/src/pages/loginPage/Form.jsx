@@ -74,7 +74,6 @@ const Form = () => {
     onSubmitProps.resetForm();
 
     if (savedUser) {
-      alert("Registered Succesfully");
       setPageType("login");
     }
   };
@@ -94,7 +93,6 @@ const Form = () => {
           token: loggedIn.token,
         })
       );
-      alert("Logged In Succesfully");
       navigate("/home");
     }
   };

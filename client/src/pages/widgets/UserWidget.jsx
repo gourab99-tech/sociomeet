@@ -11,7 +11,6 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { BsTwitter, BsLinkedin } from "react-icons/bs";
 
 const UserWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
@@ -53,13 +52,14 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pd="1.1rem"
+        mb="10px"
         onClick={() => {
           navigate(`/profile/${userId}`);
           navigate(0);
         }}
       >
         <FlexBetween gap="1rem">
-          <UserImage image={picturePath} />
+          <UserImage image={picturePath} size="50px" />
           <Box>
             <Typography
               variant="h4"
@@ -82,12 +82,21 @@ const UserWidget = ({ userId, picturePath }) => {
       <Divider />
       <Box>
         <Box>
-          <LocationOnOutlined fontSize="large" sx={{ color: main }} />
+          <LocationOnOutlined
+            fontSize="medium"
+            sx={{ color: main, marginTop: "10px" }}
+          />
           <Typography fontSize={medium}>{location}</Typography>
         </Box>
+
         <Box>
-          <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
-          <Typography fontSize={medium}>{occupation}</Typography>
+          <WorkOutlineOutlined
+            fontSize="medium"
+            sx={{ color: main, marginTop: "10px" }}
+          />
+          <Typography fontSize={medium} sx={{ marginBottom: "10px" }}>
+            {occupation}
+          </Typography>
         </Box>
       </Box>
       <Divider />
@@ -113,9 +122,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            {/* <img src="../assets/twitter.png" alt="twitter" /> */}
-            <BsTwitter />
-
+            <img src="../assets/twitter.png" alt="twitter" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
@@ -128,8 +135,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            {/* <img src="../assets/linkedin.png" alt="linkedin" /> */}
-            <BsLinkedin />
+            <img src="../assets/linkedin.png" alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
